@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://coreagcy-oss.github.io/core-agency/sitemap.xml

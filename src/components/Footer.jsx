@@ -29,7 +29,7 @@ export default function Footer() {
               Core<span>Agency</span>
             </a>
             <p className="footer-tagline">
-              Агентство полного цикла. Растим прибыль через бренд.
+              Маркетинговое агентство полного цикла в Москве и Санкт-Петербурге. Растим прибыль через бренд.
             </p>
           </div>
 
@@ -43,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© 2024 Core Agency · Агентство полного цикла</p>
+          <p>© 2026 Core Agency · Маркетинговое агентство полного цикла</p>
           <div className="footer-legal">
             <button type="button" onClick={() => setLegal('privacy')}>
               Политика конфиденциальности
