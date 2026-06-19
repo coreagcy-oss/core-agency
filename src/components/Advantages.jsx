@@ -50,12 +50,11 @@ export default function Advantages() {
           </div>
 
           <div className="adv-hub">
-            <span className="adv-hub-lead">Над амбициями вашего проекта будет работать</span>
-            <span className="adv-hub-num gradient-text">10+</span>
+            <span className="adv-hub-num gradient-text">{count}</span>
             <span className="adv-hub-text">
-              профессионалов
+              причин
               <br />
-              в своей нише
+              выбрать нас
             </span>
           </div>
         </div>
