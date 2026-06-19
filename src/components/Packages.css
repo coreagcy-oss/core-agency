@@ -1,0 +1,144 @@
+.section.packages {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+.pkg-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 52px;
+}
+.pkg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 0;
+}
+.pkg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 40px 34px 36px;
+  overflow: hidden;
+  box-shadow: 0 16px 52px -42px var(--pkg-accent, var(--accent));
+  transition: transform 0.45s var(--ease), border-color 0.45s, box-shadow 0.55s var(--ease);
+}
+/* акцентная полоса сверху — у каждого пакета свой цвет */
+.pkg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--pkg-accent, var(--accent));
+}
+.pkg:hover {
+  transform: translateY(-6px);
+  border-color: var(--pkg-accent, var(--border-strong));
+  box-shadow: 0 0 50px -6px var(--pkg-accent, var(--accent)),
+    0 30px 72px -28px var(--pkg-accent, var(--accent));
+}
+.pkg-hl {
+  border-color: rgba(255, 106, 26, 0.45);
+  background: var(--surface);
+}
+.pkg-pop {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--grad);
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+.pkg-name {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 29px;
+  font-weight: 700;
+  color: var(--pkg-accent, var(--text));
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+.pkg-price {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 27px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+.pkg-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex: 1;
+}
+.pkg-features li {
+  position: relative;
+  padding-left: 26px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+}
+.pkg-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--pkg-accent, var(--accent));
+}
+.pkg-btn {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 15px;
+  border-radius: 100px;
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.pkg-btn:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+.pkg-hl .pkg-btn {
+  background: var(--grad);
+  border-color: transparent;
+  color: #fff;
+}
+
+@media (max-width: 1040px) {
+  .pkg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 880px) {
+  .pkg-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+@media (max-width: 560px) {
+  .pkg-grid {
+    grid-template-columns: 1fr;
+  }
+}

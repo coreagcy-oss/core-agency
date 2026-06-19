@@ -1,0 +1,13 @@
+.starfield {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  /* лёгкое радиальное свечение под звёздами для глубины —
+     очень плавное затухание до самого края, без видимой «грани» */
+  background:
+    radial-gradient(ellipse 120% 110% at 82% 8%, rgba(255, 106, 26, 0.1), rgba(255, 106, 26, 0) 100%),
+    radial-gradient(ellipse 110% 110% at 8% 88%, rgba(255, 157, 46, 0.075), rgba(255, 157, 46, 0) 100%);
+}

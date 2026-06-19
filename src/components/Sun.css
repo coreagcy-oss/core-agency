@@ -1,0 +1,78 @@
+.sun {
+  position: fixed;
+  top: -130px;
+  left: -130px;
+  width: 480px;
+  height: 480px;
+  z-index: 0;
+  pointer-events: none;
+}
+.sun span {
+  position: absolute;
+  border-radius: 50%;
+}
+/* широкий тёплый ореол */
+.sun-glow {
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 180, 90, 0.36) 0%,
+    rgba(255, 120, 40, 0.14) 36%,
+    rgba(255, 106, 26, 0) 70%
+  );
+}
+/* вращающиеся лучи */
+.sun-rays {
+  inset: 84px;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 190, 110, 0.22) 0deg 3.5deg,
+    transparent 3.5deg 13deg
+  );
+  -webkit-mask: radial-gradient(circle, #000 26%, rgba(0, 0, 0, 0.35) 46%, transparent 64%);
+  mask: radial-gradient(circle, #000 26%, rgba(0, 0, 0, 0.35) 46%, transparent 64%);
+  animation: sun-spin 70s linear infinite;
+}
+/* ядро */
+.sun-core {
+  inset: 158px;
+  background: radial-gradient(
+    circle,
+    #fffaf0 0%,
+    #ffe0a6 28%,
+    #ff9d2e 58%,
+    rgba(255, 106, 26, 0) 80%
+  );
+  box-shadow: 0 0 60px 14px rgba(255, 150, 60, 0.4);
+  animation: sun-breathe 6s var(--ease) infinite;
+}
+@keyframes sun-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes sun-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+@media (max-width: 700px) {
+  .sun {
+    top: -160px;
+    left: -160px;
+    width: 380px;
+    height: 380px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sun-rays,
+  .sun-core {
+    animation: none;
+  }
+}

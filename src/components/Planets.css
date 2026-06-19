@@ -1,0 +1,143 @@
+/* Глобальный слой планет: absolute во всю высоту main, позади контента */
+.site-planets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+  filter: blur(0.3px);
+  will-change: transform;
+  animation: planet-float 16s ease-in-out infinite;
+}
+
+/* Меркурий — маленький серо-бежевый */
+.planet--mercury {
+  top: 8%;
+  right: 5vw;
+  width: 46px;
+  height: 46px;
+  background: radial-gradient(circle at 34% 30%, #b9b0a4, #6d6459 70%, #4a443c);
+  box-shadow: inset -6px -5px 10px rgba(0, 0, 0, 0.5);
+  animation-duration: 13s;
+}
+
+/* Венера — палево-жёлтая */
+.planet--venus {
+  top: 23%;
+  left: 4vw;
+  width: 74px;
+  height: 74px;
+  background: radial-gradient(circle at 32% 28%, #ffe7b3, #e6b878 60%, #b8893f);
+  box-shadow: inset -10px -8px 18px rgba(90, 55, 20, 0.55);
+  animation-duration: 18s;
+}
+
+/* Земля — наша планета: синий океан + зелёная суша + ореол атмосферы */
+.planet--earth {
+  top: 41%;
+  right: 6vw;
+  width: 96px;
+  height: 96px;
+  background:
+    radial-gradient(circle at 70% 75%, rgba(76, 175, 96, 0.9), transparent 38%),
+    radial-gradient(circle at 32% 34%, rgba(120, 200, 120, 0.85), transparent 30%),
+    radial-gradient(circle at 38% 30%, #6fb8ff, #1f6fd6 58%, #0b3b86);
+  box-shadow: inset -12px -10px 22px rgba(0, 10, 40, 0.6);
+  opacity: 0.7;
+  animation-duration: 20s;
+}
+.planet-earth-glow {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(120, 190, 255, 0.35), transparent 68%);
+}
+
+/* Юпитер — крупный, полосатый */
+.planet--jupiter {
+  top: 59%;
+  left: 3vw;
+  width: 124px;
+  height: 124px;
+  background:
+    repeating-linear-gradient(
+      8deg,
+      rgba(120, 80, 50, 0.55) 0 10px,
+      rgba(210, 170, 120, 0.5) 10px 20px,
+      rgba(160, 110, 70, 0.5) 20px 30px
+    ),
+    radial-gradient(circle at 36% 32%, #e8c79a, #b07f4d 62%, #7a5230);
+  box-shadow: inset -14px -12px 26px rgba(40, 20, 0, 0.55);
+  animation-duration: 22s;
+}
+
+/* Сатурн — золотистый с кольцом */
+.planet--saturn {
+  top: 76%;
+  right: 7vw;
+  width: 98px;
+  height: 98px;
+  background: radial-gradient(circle at 34% 30%, #ffe3a8, #d8a857 60%, #a9772f);
+  box-shadow: inset -12px -10px 22px rgba(70, 45, 10, 0.55);
+  animation-duration: 17s;
+}
+.planet-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 215%;
+  height: 62%;
+  transform: translate(-50%, -50%) rotate(-22deg);
+  border-radius: 50%;
+  border: 5px solid rgba(255, 206, 150, 0.5);
+  border-top-color: rgba(255, 206, 150, 0.16);
+  border-bottom-color: rgba(255, 206, 150, 0.16);
+  box-shadow: 0 0 12px rgba(255, 190, 120, 0.25);
+}
+
+/* Уран — бледно-бирюзовый */
+.planet--uranus {
+  top: 90%;
+  left: 5vw;
+  width: 66px;
+  height: 66px;
+  background: radial-gradient(circle at 34% 30%, #d6f7f4, #8fd9d2 58%, #4a9a96);
+  box-shadow: inset -9px -7px 16px rgba(10, 50, 50, 0.5);
+  animation-duration: 15s;
+}
+
+@keyframes planet-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -16px);
+  }
+}
+
+/* на узких экранах прячем боковые планеты, чтобы не мешали контенту */
+@media (max-width: 760px) {
+  .planet--jupiter,
+  .planet--mercury {
+    display: none;
+  }
+  .planet {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planet {
+    animation: none;
+  }
+}

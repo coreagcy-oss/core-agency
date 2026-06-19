@@ -1,0 +1,259 @@
+.advantages {
+  background: transparent;
+}
+.section.advantages {
+  padding-top: 24px;
+}
+.adv-head {
+  margin-bottom: 40px;
+}
+
+/* --- Дерзкое двойное подчёркивание слова «именно» --- */
+.adv-em {
+  position: relative;
+  color: var(--text);
+  white-space: nowrap;
+}
+.adv-underline {
+  position: absolute;
+  left: -5%;
+  bottom: -0.34em;
+  width: 110%;
+  height: 0.55em;
+  overflow: visible;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(255, 106, 26, 0.55));
+}
+.adv-ul {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.section-title.in .adv-ul-1 {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.55s var(--ease) 0.35s;
+}
+.section-title.in .adv-ul-2 {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.55s var(--ease) 0.62s;
+}
+
+/* --- Кольцо-«штурвал» с вращением --- */
+.adv-ring {
+  --D: min(72vw, 920px);
+  --bubble: 304px;
+  --R: calc((var(--D) - var(--bubble)) / 2);
+  --spin: 95s;
+  position: relative;
+  width: var(--D);
+  height: var(--D);
+  /* сдвигаем штурвал в правую часть экрана — слева остаётся воздух под линию */
+  margin: 40px 0 28px auto;
+}
+
+.adv-rotor {
+  position: absolute;
+  inset: 0;
+  animation: adv-spin var(--spin) linear infinite;
+}
+
+/* обод-«цепочка», соединяющий шарики */
+.adv-rim {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--R) * 2);
+  height: calc(var(--R) * 2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid rgba(255, 157, 46, 0.28);
+  box-shadow: inset 0 0 80px rgba(255, 106, 26, 0.07);
+}
+
+/* спицы штурвала — от центра к каждому шару */
+.adv-spoke {
+  --a: calc(var(--i) * (360deg / var(--adv-count)));
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  width: 2px;
+  height: var(--R);
+  margin-left: -1px;
+  transform-origin: bottom center;
+  transform: rotate(var(--a));
+  background: linear-gradient(to top, transparent, rgba(255, 157, 46, 0.45));
+}
+
+.adv-node {
+  --a: calc(var(--i) * (360deg / var(--adv-count)));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--bubble);
+  height: var(--bubble);
+  margin: calc(var(--bubble) / -2) 0 0 calc(var(--bubble) / -2);
+  transform: rotate(var(--a)) translate(0, calc(var(--R) * -1)) rotate(calc(var(--a) * -1));
+}
+
+.adv-bubble {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding: 30px 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 30%, var(--surface2), var(--surface) 72%);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 24px 60px -34px rgba(0, 0, 0, 0.9), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  animation: adv-counter var(--spin) linear infinite;
+  transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s var(--ease);
+}
+.adv-node:hover {
+  z-index: 3;
+}
+.adv-node:hover .adv-bubble {
+  border-color: rgba(255, 106, 26, 0.5);
+  box-shadow: 0 0 46px -6px rgba(255, 106, 26, 0.5), 0 24px 60px -30px rgba(0, 0, 0, 0.9);
+}
+
+.adv-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 31px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  background: linear-gradient(100deg, var(--accent) 0%, var(--accent2) 45%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* яркое тёплое свечение, чтобы заголовок «горел» */
+  filter: drop-shadow(0 0 14px rgba(255, 170, 70, 0.55));
+}
+.adv-desc {
+  font-size: 17px;
+  line-height: 1.5;
+  color: rgba(244, 236, 228, 0.96);
+}
+
+/* центральная ступица штурвала — акцентный круг */
+.adv-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 268px;
+  height: 268px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  text-align: center;
+  background: radial-gradient(circle, rgba(255, 106, 26, 0.16), var(--surface) 72%);
+  border: 1px solid rgba(255, 106, 26, 0.35);
+  box-shadow: 0 0 70px -8px rgba(255, 106, 26, 0.45);
+  animation: adv-hub-pulse 3.4s var(--ease) infinite;
+}
+.adv-hub-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 102px;
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  filter: drop-shadow(0 0 20px rgba(255, 106, 26, 0.5));
+}
+.adv-hub-text {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+@keyframes adv-hub-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 60px -12px rgba(255, 106, 26, 0.4);
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    box-shadow: 0 0 84px -6px rgba(255, 106, 26, 0.6);
+    transform: translate(-50%, -50%) scale(1.04);
+  }
+}
+
+@keyframes adv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes adv-counter {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* --- Адаптив: на узких экранах — обычная сетка карточек --- */
+@media (max-width: 920px) {
+  .adv-ring {
+    width: 100%;
+    height: auto;
+  }
+  .adv-rotor {
+    position: static;
+    inset: auto;
+    animation: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .adv-rim,
+  .adv-spoke,
+  .adv-hub {
+    display: none;
+  }
+  .adv-node {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 0;
+    transform: none !important;
+  }
+  .adv-bubble {
+    width: auto;
+    height: auto;
+    border-radius: 22px;
+    align-items: flex-start;
+    text-align: left;
+    padding: 28px 26px;
+    animation: none;
+  }
+  .adv-title {
+    font-size: 26px;
+  }
+  .adv-desc {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+}
+@media (max-width: 560px) {
+  .adv-rotor {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adv-rotor,
+  .adv-bubble,
+  .adv-hub {
+    animation: none;
+  }
+}

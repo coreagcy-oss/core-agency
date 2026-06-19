@@ -1,0 +1,224 @@
+.services-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 56px;
+}
+.services-head-text {
+  max-width: 360px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.dir-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dir {
+  position: relative;
+  display: grid;
+  grid-template-columns: 210px 1fr auto;
+  align-items: center;
+  gap: 44px;
+  padding: 38px 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  transition: background 0.4s var(--ease), border-color 0.4s var(--ease),
+    transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  overflow: hidden;
+}
+.dir::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--dir-accent);
+  opacity: 0.06;
+  transition: width 0.5s var(--ease);
+}
+.dir:hover::before {
+  width: 100%;
+}
+.dir:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -40px var(--dir-accent, rgba(255, 106, 26, 0.6));
+}
+
+.dir-icon {
+  position: relative;
+  z-index: 1;
+  width: 190px;
+  height: 190px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  filter: saturate(0.9) brightness(0.95);
+  transform: scale(0.97);
+  transition: filter 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.dir:hover .dir-icon {
+  filter: saturate(1) brightness(1.05) drop-shadow(0 6px 18px rgba(255, 106, 26, 0.35));
+  transform: scale(1);
+}
+.dir-icon svg {
+  display: block;
+  overflow: visible;
+}
+
+.dir-main {
+  position: relative;
+  z-index: 1;
+}
+.dir-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: clamp(24px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.dir-title-name {
+  background: linear-gradient(100deg, var(--accent), var(--accent2) 70%, var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dir-title .badge.dir-new {
+  font-family: 'Golos Text', sans-serif;
+  letter-spacing: 0.02em;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 7px 18px;
+  color: #fff;
+  background: linear-gradient(120deg, var(--accent2), var(--accent3));
+  border-color: transparent;
+  box-shadow: 0 10px 28px -10px rgba(255, 178, 77, 0.85);
+}
+.dir-desc {
+  font-size: 17.5px;
+  color: rgba(244, 236, 228, 0.82);
+  max-width: 620px;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+/* выделенная фраза-обещание «первые заявки уже …» */
+.dir-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 11px 18px;
+  border-radius: 100px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: #fff;
+  background: linear-gradient(120deg, var(--dir-accent, var(--accent)), var(--accent2));
+  box-shadow: 0 14px 34px -16px rgba(255, 106, 26, 0.8);
+}
+.dir-highlight-dash {
+  font-weight: 700;
+  opacity: 0.85;
+}
+.dir-desc-dash {
+  color: var(--text);
+  font-weight: 700;
+}
+/* словесный акцент (внимание, фирменный, полный) */
+.dir-em {
+  font-weight: 700;
+  color: var(--accent2);
+}
+/* «сухой факт» — число/значение: просто оранжевый текст, без рамки */
+.dir-num {
+  font-weight: 700;
+  color: var(--accent2);
+  white-space: nowrap;
+}
+.dir-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+/* плашки-теги — белые */
+.dir-tag {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  padding: 9px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.07);
+  transition: border-color 0.3s, background 0.3s, box-shadow 0.3s, color 0.3s;
+}
+.dir:hover .dir-tag {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 26px -14px rgba(255, 255, 255, 0.4);
+}
+
+.dir-cta {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  padding: 20px 34px;
+  border: none;
+  border-radius: 100px;
+  white-space: nowrap;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 16px 40px -16px rgba(255, 106, 26, 0.7);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), filter 0.3s var(--ease);
+}
+.dir-cta svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s var(--ease);
+}
+.dir-cta:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.06);
+  box-shadow: 0 22px 52px -16px rgba(255, 106, 26, 0.85);
+}
+.dir-cta:hover svg {
+  transform: translate(3px, -3px);
+}
+
+@media (max-width: 880px) {
+  .services-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .dir {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 26px 22px;
+    border-radius: 24px;
+  }
+  .dir-icon {
+    width: 130px;
+    height: 130px;
+  }
+  .dir-cta {
+    align-self: flex-start;
+  }
+}

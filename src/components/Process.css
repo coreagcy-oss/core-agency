@@ -1,0 +1,324 @@
+.process {
+  position: relative;
+  background: transparent;
+}
+
+/* --- Закреплённый горизонтальный скролл --- */
+.proc-pin {
+  --proc-gutter: max(24px, calc((100vw - var(--maxw)) / 2 + 48px));
+  --proc-intro-w: min(42vw, 400px);
+  --proc-intro-op: 1;
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+/* затемнение слева, чтобы панели уезжали «под» вводный блок;
+   вертикальная маска убирает резкие чёрные кромки сверху/снизу,
+   а opacity гаснет вместе с вводным блоком при скролле */
+.proc-pin::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--proc-gutter) + var(--proc-intro-w) + 120px);
+  background: linear-gradient(
+    90deg,
+    #0a0806 0%,
+    #0a0806 38%,
+    rgba(10, 8, 6, 0.6) 68%,
+    rgba(10, 8, 6, 0) 100%
+  );
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 18%, #000 82%, transparent 100%);
+  opacity: var(--proc-intro-op, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+/* --- Далёкие планеты: фоновый параллакс-слой --- */
+.proc-planets {
+  position: absolute;
+  inset: 0;
+  width: 260vw;
+  z-index: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.proc-planet {
+  position: absolute;
+  border-radius: 50%;
+  /* дальний план: мягкие, приглушённые, слегка размытые */
+  opacity: 0.55;
+  filter: blur(0.4px);
+}
+/* Сатурн с кольцом — вверху */
+.proc-planet--saturn {
+  left: 30vw;
+  top: 11%;
+  width: 116px;
+  height: 116px;
+  background: radial-gradient(circle at 34% 30%, #ffe7bd 0%, #f3b25e 42%, #b9702c 78%, #7c4417 100%);
+  box-shadow: inset -10px -8px 22px rgba(60, 30, 10, 0.55), 0 0 34px rgba(255, 170, 90, 0.22);
+}
+.proc-planet-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 215%;
+  height: 64%;
+  transform: translate(-50%, -50%) rotate(-21deg);
+  border: 5px solid rgba(255, 206, 150, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(255, 190, 120, 0.25);
+}
+/* Марс — внизу слева */
+.proc-planet--mars {
+  left: 64vw;
+  top: 74%;
+  width: 64px;
+  height: 64px;
+  background: radial-gradient(circle at 36% 32%, #ff9d6b 0%, #d65a32 48%, #8c2f1a 84%);
+  box-shadow: inset -7px -5px 16px rgba(50, 16, 8, 0.6), 0 0 22px rgba(255, 110, 60, 0.2);
+}
+/* Нептун — вверху, дальше по треку */
+.proc-planet--neptune {
+  left: 118vw;
+  top: 15%;
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 35% 30%, #bfe4ff 0%, #5aa6e6 46%, #2c5fa6 82%, #1b3a73 100%);
+  box-shadow: inset -8px -6px 18px rgba(10, 24, 60, 0.6), 0 0 26px rgba(90, 160, 230, 0.22);
+}
+/* Газовый гигант с полосами — внизу, в самом дальнем углу трека */
+.proc-planet--gas {
+  left: 172vw;
+  top: 70%;
+  width: 104px;
+  height: 104px;
+  background: radial-gradient(circle at 34% 30%, #ffe9c4 0%, transparent 60%),
+    repeating-linear-gradient(
+      8deg,
+      #e8a85a 0px,
+      #d98c3e 7px,
+      #c5752f 14px,
+      #e0a052 21px
+    );
+  box-shadow: inset -10px -8px 24px rgba(60, 30, 10, 0.6), 0 0 30px rgba(240, 165, 80, 0.2);
+}
+
+.proc-track {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-left: calc(var(--proc-gutter) + var(--proc-intro-w) + 150px);
+  padding-right: clamp(24px, 5vw, 90px);
+  will-change: transform;
+}
+.proc-track .proc-panel {
+  position: relative;
+  z-index: 1;
+}
+
+/* левая закреплённая вводная панель «Клиентский путь» */
+.proc-intro {
+  position: absolute;
+  left: var(--proc-gutter);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--proc-intro-w);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: var(--proc-intro-op, 1);
+  pointer-events: none;
+}
+.proc-h2 {
+  font-size: clamp(38px, 4.4vw, 64px);
+  font-weight: 700;
+  color: var(--text);
+  margin: 16px 0 22px;
+}
+.proc-h2 .muted {
+  color: var(--muted);
+}
+.proc-quote {
+  position: relative;
+  padding-left: 20px;
+  border-left: 2px solid var(--accent);
+  font-size: clamp(18px, 1.9vw, 23px);
+  line-height: 1.5;
+  color: rgba(244, 236, 228, 0.9);
+  max-width: 390px;
+}
+.proc-quote strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+.proc-scroll-hint {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Unbounded', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.proc-scroll-arrow {
+  font-size: 20px;
+  animation: proc-hint 1.3s var(--ease) infinite;
+}
+@keyframes proc-hint {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+}
+
+.proc-panel {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(80vw, 460px);
+  height: min(58vh, 392px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 36px 38px;
+  border-radius: 24px;
+  background: linear-gradient(165deg, var(--surface2), var(--surface));
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.5s, box-shadow 0.5s;
+}
+.proc-panel.active {
+  border-color: rgba(255, 106, 26, 0.45);
+  box-shadow: 0 30px 72px -32px rgba(255, 106, 26, 0.5);
+}
+
+.proc-panel-step {
+  position: relative;
+  z-index: 1;
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(58px, 7vw, 92px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  opacity: 0.4;
+  margin-bottom: 18px;
+  transition: opacity 0.5s var(--ease);
+}
+.proc-panel.active .proc-panel-step {
+  opacity: 1;
+}
+
+.proc-panel-body {
+  position: relative;
+  z-index: 1;
+}
+/* заголовок в две строки: первое слово крупно, второе — меньше, оба градиентом */
+.proc-panel-title {
+  font-family: 'Unbounded', sans-serif;
+  font-weight: 800;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* фиксированная высота под две строки — заголовки и описания
+     во всех панелях начинаются на одной высоте */
+  min-height: calc(2 * 1.08 * 34px);
+}
+.proc-panel-title-main,
+.proc-panel-title-sub {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  background: linear-gradient(100deg, var(--accent), var(--accent2) 70%, var(--accent3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* заголовок одним размером — оба слова одинаковые, просто в две строки */
+.proc-panel-title-main,
+.proc-panel-title-sub {
+  font-size: 34px;
+  font-weight: 800;
+}
+.proc-panel-desc {
+  font-size: 20px;
+  line-height: 1.6;
+  color: rgba(244, 236, 228, 0.9);
+}
+
+.proc-panel-glow {
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 70%;
+  height: 70%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 106, 26, 0.28), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+  pointer-events: none;
+}
+.proc-panel.active .proc-panel-glow {
+  opacity: 1;
+}
+
+/* --- Мобильная раскладка: вертикальный стек без пина --- */
+@media (max-width: 920px) {
+  .process {
+    padding: 84px 0;
+  }
+  .proc-pin {
+    height: auto;
+    overflow: visible;
+  }
+  .proc-planets {
+    display: none;
+  }
+  .proc-track {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 0 22px;
+    transform: none !important;
+  }
+  .proc-intro {
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  .proc-quote {
+    max-width: none;
+  }
+  .proc-scroll-hint {
+    display: none;
+  }
+  .proc-panel {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    gap: 22px;
+    border-color: var(--border-strong);
+  }
+  .proc-panel-step {
+    opacity: 1;
+    font-size: 56px;
+  }
+  .proc-panel-glow {
+    display: none;
+  }
+}

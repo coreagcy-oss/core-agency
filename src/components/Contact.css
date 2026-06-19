@@ -1,0 +1,229 @@
+.contact {
+  background: transparent;
+}
+.section.contact {
+  padding-top: 56px;
+}
+.contact .contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 48px;
+  align-items: stretch;
+  /* занимаем больше горизонтального пространства, но не во весь экран */
+  max-width: 1480px;
+}
+.contact-text {
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 420px;
+}
+
+/* Бонус-блок с игровым автоматом */
+.contact-bonus {
+  margin-top: 28px;
+}
+.contact-slot {
+  /* тянем игру по ширине колонки — форма становится более квадратной */
+  max-width: none;
+  width: 100%;
+}
+.contact-error {
+  font-size: 13px;
+  color: #ff7a59;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.contact-form-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 28px;
+  padding: 48px 46px;
+  box-shadow: 0 40px 90px -50px rgba(0, 0, 0, 0.9);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+/* два поля в ряд (Имя | Телефон, Email | Телеграм) */
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.field span {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: rgba(244, 236, 228, 0.82);
+  line-height: 1.35;
+}
+.field-hint {
+  font-size: 13.5px;
+  color: rgba(244, 236, 228, 0.5);
+  line-height: 1.4;
+  margin-top: -3px;
+}
+.field input,
+.field textarea {
+  font-family: inherit;
+  font-size: 17px;
+  color: var(--text);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 17px 18px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  resize: none;
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #6b5d4e;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255, 106, 26, 0.14);
+}
+
+/* блок предпочтений: два вопроса-карточки в один ряд, равной высоты,
+   с отбивкой сверху — чтобы визуально отделить от контактных полей */
+.contact-prefs {
+  align-items: stretch;
+  margin-top: 6px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+.contact-prefs .entity-field {
+  gap: 14px;
+  padding: 18px 20px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.contact-prefs .entity-field > span {
+  color: var(--text);
+}
+.entity-field .entity-radio {
+  min-height: 0;
+  align-items: center;
+}
+
+/* спокойные галочки, без яркой заливки */
+.entity-radio {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 26px;
+  padding-top: 2px;
+}
+.entity-pick {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  font-family: inherit;
+  font-size: 16px;
+  color: rgba(244, 236, 228, 0.72);
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color 0.25s;
+}
+.entity-pick:hover {
+  color: var(--text);
+}
+.entity-box {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--bg2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.25s, background 0.25s;
+}
+.entity-pick.is-active {
+  color: var(--text);
+}
+.entity-pick.is-active .entity-box {
+  border-color: var(--accent);
+}
+.entity-pick.is-active .entity-box::after {
+  content: '';
+  width: 10px;
+  height: 5px;
+  margin-top: -2px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+.contact-submit {
+  margin-top: 10px;
+  width: 100%;
+  font-size: 18px;
+  padding: 20px 32px;
+}
+.contact-policy {
+  font-size: 14px;
+  color: rgba(244, 236, 228, 0.62);
+  line-height: 1.5;
+  text-align: center;
+}
+
+.contact-success {
+  text-align: center;
+  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.contact-success-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  animation: slot-pop 0.5s var(--ease);
+}
+.contact-success h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text);
+}
+.contact-success p {
+  font-size: 16.5px;
+  color: rgba(244, 236, 228, 0.78);
+  margin-bottom: 14px;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .contact-form-wrap {
+    padding: 32px 24px;
+  }
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}

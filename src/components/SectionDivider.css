@@ -1,0 +1,51 @@
+.section-divider {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 8px 48px;
+  pointer-events: none;
+}
+.section-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 157, 46, 0.32));
+}
+.section-divider-line:last-child {
+  background: linear-gradient(to left, transparent, rgba(255, 157, 46, 0.32));
+}
+.section-divider-star {
+  flex-shrink: 0;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--accent2);
+  filter: drop-shadow(0 0 10px rgba(255, 157, 46, 0.7));
+  animation: divider-twinkle 3.2s var(--ease) infinite;
+}
+@keyframes divider-twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(90deg);
+  }
+}
+@media (max-width: 900px) {
+  .section-divider {
+    padding: 4px 22px;
+    gap: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-divider-star {
+    animation: none;
+  }
+}
