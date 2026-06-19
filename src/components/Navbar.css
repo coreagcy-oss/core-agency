@@ -23,10 +23,10 @@
 .nav-logo {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 13px;
   font-family: 'Unbounded', sans-serif;
   font-weight: 700;
-  font-size: 19px;
+  font-size: 26px;
   letter-spacing: -0.02em;
   color: var(--text);
 }
@@ -34,8 +34,8 @@
   color: var(--accent);
 }
 .nav-logo-mark {
-  width: 34px;
-  height: 34px;
+  width: 46px;
+  height: 46px;
   display: block;
   filter: drop-shadow(0 0 12px rgba(255, 106, 26, 0.45));
 }
