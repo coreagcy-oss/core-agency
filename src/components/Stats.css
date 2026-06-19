@@ -43,6 +43,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  /* прижимаем счётчики влево под заголовок — без широкого пробела справа */
+  max-width: 820px;
 }
 .stat {
   position: relative;
