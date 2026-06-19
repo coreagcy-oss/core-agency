@@ -234,6 +234,12 @@
   .hero-scene-glow {
     right: -10%;
   }
+  /* уменьшаем значок кавычек, чтобы он не залезал на текст цитаты */
+  .hero-quote::before {
+    font-size: 44px;
+    top: 0;
+    right: 12px;
+  }
   .hero-scroll {
     display: none;
   }

@@ -63,11 +63,12 @@
   }
 }
 @media (max-width: 700px) {
+  /* опускаем солнце ниже хедера, чтобы ядро было видно под шапкой */
   .sun {
-    top: -160px;
-    left: -160px;
-    width: 380px;
-    height: 380px;
+    top: -40px;
+    left: -150px;
+    width: 360px;
+    height: 360px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

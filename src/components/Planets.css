@@ -125,14 +125,56 @@
   }
 }
 
-/* на узких экранах прячем боковые планеты, чтобы не мешали контенту */
+/* на мобильных карточки занимают всю ширину, поэтому боковые планеты
+   прятались за ними. Переносим планеты в пустые тёмные полосы-разделители
+   между блоками, чтобы их было видно. */
 @media (max-width: 760px) {
-  .planet--jupiter,
-  .planet--mercury {
-    display: none;
-  }
   .planet {
-    opacity: 0.4;
+    opacity: 0.6;
+  }
+  .planet--venus {
+    top: 9.2%;
+    left: auto;
+    right: 13vw;
+    width: 58px;
+    height: 58px;
+  }
+  .planet--earth {
+    top: 30.9%;
+    left: 11vw;
+    right: auto;
+    width: 72px;
+    height: 72px;
+  }
+  .planet--saturn {
+    top: 39.6%;
+    left: auto;
+    right: 12vw;
+    width: 60px;
+    height: 60px;
+  }
+  .planet--uranus {
+    top: 54.8%;
+    left: 12vw;
+    right: auto;
+    width: 56px;
+    height: 56px;
+  }
+  .planet--mercury {
+    display: block;
+    top: 66%;
+    left: auto;
+    right: 16vw;
+    width: 44px;
+    height: 44px;
+  }
+  .planet--jupiter {
+    display: block;
+    top: 82.9%;
+    left: 9vw;
+    right: auto;
+    width: 70px;
+    height: 70px;
   }
 }
 

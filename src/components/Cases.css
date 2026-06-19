@@ -210,9 +210,13 @@
   .cases-gallery {
     grid-template-columns: 1fr;
   }
-  /* нарисованная обводка не должна налезать на название кейса */
+  /* название поднимаем вплотную к цифре — лишний пробел убираем */
   .case-cap-num-wrap {
-    margin: 6px 0 22px;
+    margin: 4px 0 0;
+  }
+  /* отступ нужен только там, где есть нарисованная обводка (она шире цифры) */
+  .case-cap-num-wrap:has(.case-cap-circle) {
+    margin-bottom: 20px;
   }
   .case-cap-circle {
     width: calc(100% + 78px);

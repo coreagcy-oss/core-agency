@@ -214,9 +214,27 @@
     padding: 26px 22px;
     border-radius: 24px;
   }
+  /* картинку-иконку — по центру карточки */
   .dir-icon {
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
+    justify-self: center;
+  }
+  /* крупнее заголовки направлений */
+  .dir-title {
+    font-size: 30px;
+    gap: 9px;
+  }
+  /* карточка с бейджем «Флагман» — заголовок чуть меньше, чтобы
+     «Контент-завод» и «Флагман» поместились в одну строку справа */
+  .dir-title:has(.badge.dir-new) {
+    font-size: 20px;
+    flex-wrap: nowrap;
+  }
+  /* «Флагман» — компактнее, чтобы помещался справа от «Контент-завод» */
+  .dir-title .badge.dir-new {
+    font-size: 11px;
+    padding: 4px 10px;
   }
   .dir-cta {
     align-self: flex-start;

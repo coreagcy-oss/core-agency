@@ -325,14 +325,15 @@
     opacity: 1;
     font-size: 56px;
   }
-  /* меньше шрифт заголовка, чтобы слова не рвались посередине */
+  /* меньше шрифт заголовка, чтобы длинные слова («Стратегическая»)
+     помещались в одну строку и «я» не переносилось */
   .proc-panel-title {
     min-height: 0;
     margin-bottom: 10px;
   }
   .proc-panel-title-main,
   .proc-panel-title-sub {
-    font-size: 29px;
+    font-size: 26px;
   }
   .proc-panel-desc {
     font-size: 19px;
