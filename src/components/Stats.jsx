@@ -49,9 +49,6 @@ export default function Stats() {
           <h2 className="stats-title">
             Цифры, которыми <span className="gradient-text">мы гордимся</span>
           </h2>
-          <p className="stats-sub">
-            Над амбициями вашего проекта будет работать 10+ профессионалов в своей нише
-          </p>
         </div>
         <div className="stats-grid">
           {STATS.map((s, i) => (

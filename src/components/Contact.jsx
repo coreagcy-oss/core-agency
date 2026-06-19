@@ -153,7 +153,7 @@ export default function Contact() {
 
               <div className="field-row contact-prefs">
                 <div className="field entity-field">
-                  <span>Удобный способ связи</span>
+                  <span>Удобный способ для связи</span>
                   <div
                     className="entity-radio"
                     role="radiogroup"
@@ -176,7 +176,7 @@ export default function Contact() {
                 </div>
 
                 <div className="field entity-field">
-                  <span>В каком лице вы к нам обращаетесь</span>
+                  <span>В каком лице вы к нам обращаетесь?</span>
                   <div
                     className="entity-radio"
                     role="radiogroup"

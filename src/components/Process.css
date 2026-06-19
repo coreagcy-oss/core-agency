@@ -255,9 +255,10 @@
   font-weight: 800;
 }
 .proc-panel-desc {
-  font-size: 20px;
+  font-size: 23px;
   line-height: 1.6;
-  color: rgba(244, 236, 228, 0.9);
+  font-weight: 500;
+  color: #fff;
 }
 
 .proc-panel-glow {
