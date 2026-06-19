@@ -132,29 +132,31 @@
   .planet {
     opacity: 0.6;
   }
+  /* планеты строго в свободных вертикалях (с учётом стороны лево/право),
+     чтобы не налезать на заголовки и текст ни в одной полосе */
   .planet--venus {
-    top: 9.2%;
+    top: 9.11%;
     left: auto;
     right: 13vw;
     width: 58px;
     height: 58px;
   }
   .planet--earth {
-    top: 30.9%;
-    left: 11vw;
-    right: auto;
+    top: 32.33%;
+    left: auto;
+    right: 11vw;
     width: 72px;
     height: 72px;
   }
   .planet--saturn {
-    top: 39.6%;
+    top: 39.97%;
     left: auto;
     right: 12vw;
     width: 60px;
     height: 60px;
   }
   .planet--uranus {
-    top: 54.8%;
+    top: 54.88%;
     left: 12vw;
     right: auto;
     width: 56px;
@@ -162,7 +164,7 @@
   }
   .planet--mercury {
     display: block;
-    top: 66%;
+    top: 67.35%;
     left: auto;
     right: 16vw;
     width: 44px;
@@ -170,7 +172,7 @@
   }
   .planet--jupiter {
     display: block;
-    top: 82.9%;
+    top: 82.54%;
     left: 9vw;
     right: auto;
     width: 70px;
