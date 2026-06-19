@@ -44,15 +44,25 @@ function Counter({ value, suffix, prefix }) {
 export default function Stats() {
   return (
     <section className="stats" id="stats">
-      <div className="container stats-grid">
-        {STATS.map((s, i) => (
-          <div className="stat" key={i}>
-            <div className="stat-value">
-              <Counter value={s.value} suffix={s.suffix} prefix={s.prefix} />
+      <div className="container">
+        <div className="stats-head">
+          <h2 className="stats-title">
+            Цифры, которыми <span className="gradient-text">мы гордимся</span>
+          </h2>
+          <p className="stats-sub">
+            Над амбициями вашего проекта будет работать 10+ профессионалов в своей нише
+          </p>
+        </div>
+        <div className="stats-grid">
+          {STATS.map((s, i) => (
+            <div className="stat" key={i}>
+              <div className="stat-value">
+                <Counter value={s.value} suffix={s.suffix} prefix={s.prefix} />
+              </div>
+              <div className="stat-label">{s.label}</div>
             </div>
-            <div className="stat-label">{s.label}</div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

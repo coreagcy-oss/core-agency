@@ -1,6 +1,5 @@
-import { CASES, PORTFOLIO_URL } from '../data/content';
+import { CASES } from '../data/content';
 import { useReveal } from '../hooks/useReveal';
-import SectionDivider from './SectionDivider';
 import './Cases.css';
 
 export default function Cases() {
@@ -55,28 +54,6 @@ export default function Cases() {
           ))}
         </div>
 
-        <SectionDivider />
-
-        <div className="cases-outro reveal">
-          <div className="cases-outro-head">
-            <h3 className="cases-outro-title">
-              <span className="gradient-text">Полное портфолио</span>
-            </h3>
-            <p>
-              <span className="cases-outro-dash" aria-hidden="true">—</span> Покажем полное портфолио
-              и разберём, как применить к вашему проекту.
-            </p>
-          </div>
-
-          <a
-            className="btn btn-primary cases-portfolio-btn magnetic"
-            href={PORTFOLIO_URL}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Полное портфолио
-          </a>
-        </div>
       </div>
     </section>
   );

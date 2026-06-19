@@ -9,13 +9,15 @@
   justify-content: space-between;
   padding: 22px 48px;
   transition: padding 0.4s var(--ease), background 0.4s, border-color 0.4s;
-  border-bottom: 1px solid transparent;
-}
-.nav.scrolled {
-  padding: 14px 48px;
+  /* тёмная подложка и нижняя линия видны сразу, как и на остальном сайте */
   background: rgba(13, 15, 20, 0.72);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
+}
+.nav.scrolled {
+  padding: 14px 48px;
+  background: rgba(13, 15, 20, 0.86);
+  border-bottom: 1px solid var(--border-strong);
 }
 
 .nav-logo {
@@ -46,9 +48,9 @@
   transform: translateX(-50%);
 }
 .nav-links a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--muted);
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
   position: relative;
   transition: color 0.25s;
 }
@@ -63,7 +65,7 @@
   transition: width 0.3s var(--ease);
 }
 .nav-links a:hover {
-  color: var(--text);
+  color: var(--accent);
 }
 .nav-links a:hover::after {
   width: 100%;

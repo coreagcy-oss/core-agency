@@ -26,7 +26,7 @@ export default function Hero() {
 
         <blockquote className="hero-quote">
           <p className="hero-quote-main">
-            Мы не придумываем кампании — мы строим{' '}
+            Мы не придумываем компании — мы строим{' '}
             <strong>системы, которые продают без нас</strong>
           </p>
         </blockquote>

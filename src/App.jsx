@@ -61,8 +61,21 @@ export default function App() {
       document.fonts.ready.then(refresh);
     }
 
+    // Высота страницы меняется уже после первого рендера: лениво грузится
+    // тяжёлая WebGL-сцена Hero, картинки, шрифты. Если не пересчитать триггеры,
+    // пин «Клиентского пути» считает свою позицию по старой высоте и срабатывает
+    // раньше времени. Дёргаем refresh (с debounce) на каждое изменение высоты body.
+    let roTimer;
+    const ro = new ResizeObserver(() => {
+      clearTimeout(roTimer);
+      roTimer = setTimeout(refresh, 200);
+    });
+    ro.observe(document.body);
+
     return () => {
       timers.forEach(clearTimeout);
+      clearTimeout(roTimer);
+      ro.disconnect();
       window.removeEventListener('load', refresh);
       gsap.ticker.remove(raf);
       lenis.destroy();

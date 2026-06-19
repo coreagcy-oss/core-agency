@@ -20,6 +20,25 @@
     transparent
   );
 }
+.stats-head {
+  margin-bottom: 44px;
+  max-width: 760px;
+}
+.stats-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.stats-sub {
+  margin-top: 16px;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.55;
+  color: rgba(244, 236, 228, 0.78);
+  max-width: 620px;
+}
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

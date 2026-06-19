@@ -19,7 +19,7 @@ export const MARQUEE_SERVICES = [
 
 export const STATS = [
   { value: 25, suffix: '+', label: 'Запущенных проектов' },
-  { value: 92, suffix: '%', label: 'Клиентов возвращаются' },
+  { value: 73, suffix: '%', label: 'Клиентов возвращаются' },
   { value: 2, prefix: '>', suffix: '', label: 'Лет на рынке' },
   { value: 240, suffix: '%', label: 'Средний рост продаж' },
 ];

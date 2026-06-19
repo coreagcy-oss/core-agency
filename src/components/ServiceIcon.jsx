@@ -133,7 +133,9 @@ function ContentIcon() {
       <g filter="url(#si-shadow4)">
         <rect x="40" y="8" width="28" height="20" rx="10" fill="url(#si-badge)" />
         <text
-          x="50" y="22.5"
+          x="51" y="18"
+          textAnchor="middle"
+          dominantBaseline="central"
           fontFamily="Unbounded, sans-serif"
           fontSize="12"
           fontWeight="800"
@@ -141,7 +143,7 @@ function ContentIcon() {
         >
           3x
         </text>
-        <path d="M61 22l3-6 3 6z" fill="#0c0a08" />
+        <path d="M61 21l3-6 3 6z" fill="#0c0a08" />
       </g>
       <filter id="si-shadow4" x="-30%" y="-30%" width="160%" height="160%">
         <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#ff6a1a" floodOpacity="0.45" />
