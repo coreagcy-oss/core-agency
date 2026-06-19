@@ -43,8 +43,10 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
-  /* прижимаем счётчики влево под заголовок — без широкого пробела справа */
-  max-width: 820px;
+}
+/* четвёртый счётчик «240% Средний рост продаж» — чуть левее */
+.stat:nth-child(4) {
+  transform: translateX(-34px);
 }
 .stat {
   position: relative;
