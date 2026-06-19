@@ -186,7 +186,7 @@
 .proc-panel {
   position: relative;
   flex: 0 0 auto;
-  width: min(80vw, 460px);
+  width: min(82vw, 500px);
   height: min(58vh, 392px);
   display: flex;
   flex-direction: column;
@@ -237,7 +237,7 @@
   justify-content: flex-start;
   /* фиксированная высота под две строки — заголовки и описания
      во всех панелях начинаются на одной высоте */
-  min-height: calc(2 * 1.08 * 34px);
+  min-height: calc(2 * 1.08 * 38px);
 }
 .proc-panel-title-main,
 .proc-panel-title-sub {
@@ -251,7 +251,7 @@
 /* заголовок одним размером — оба слова одинаковые, просто в две строки */
 .proc-panel-title-main,
 .proc-panel-title-sub {
-  font-size: 34px;
+  font-size: 38px;
   font-weight: 800;
 }
 .proc-panel-desc {
