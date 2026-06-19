@@ -44,9 +44,11 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
-/* четвёртый счётчик «240% Средний рост продаж» — чуть левее */
-.stat:nth-child(4) {
-  transform: translateX(-50px);
+/* четвёртый счётчик «240% Средний рост продаж» — чуть левее (только десктоп) */
+@media (min-width: 761px) {
+  .stat:nth-child(4) {
+    transform: translateX(-50px);
+  }
 }
 .stat {
   position: relative;

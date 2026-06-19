@@ -79,10 +79,14 @@ function Particles({ count = 240 }) {
 }
 
 export default function HeroScene() {
+  // на узких экранах отодвигаем камеру — блоб помещается целиком, без обрезаний
+  const isMobile =
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 980px)').matches;
+
   return (
     <Canvas
       className="hero-canvas"
-      camera={{ position: [0, 0, 5], fov: 45 }}
+      camera={{ position: [0, 0, isMobile ? 6.6 : 5], fov: 45 }}
       dpr={[1, 1.8]}
       gl={{ antialias: true, alpha: true }}
     >

@@ -215,7 +215,7 @@
 }
 
 @media (max-width: 900px) {
-  .contact-grid {
+  .contact .contact-grid {
     grid-template-columns: 1fr;
     gap: 36px;
   }

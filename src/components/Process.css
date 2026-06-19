@@ -283,8 +283,13 @@
     padding: 84px 0;
   }
   .proc-pin {
+    display: block;
     height: auto;
     overflow: visible;
+  }
+  /* левый затемняющий градиент нужен только для горизонтального трека */
+  .proc-pin::before {
+    display: none;
   }
   .proc-planets {
     display: none;
@@ -313,11 +318,24 @@
     height: auto;
     min-height: 0;
     gap: 22px;
+    padding: 28px 24px;
     border-color: var(--border-strong);
   }
   .proc-panel-step {
     opacity: 1;
     font-size: 56px;
+  }
+  /* меньше шрифт заголовка, чтобы слова не рвались посередине */
+  .proc-panel-title {
+    min-height: 0;
+    margin-bottom: 10px;
+  }
+  .proc-panel-title-main,
+  .proc-panel-title-sub {
+    font-size: 29px;
+  }
+  .proc-panel-desc {
+    font-size: 19px;
   }
   .proc-panel-glow {
     display: none;

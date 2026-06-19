@@ -210,4 +210,12 @@
   .cases-gallery {
     grid-template-columns: 1fr;
   }
+  /* нарисованная обводка не должна налезать на название кейса */
+  .case-cap-num-wrap {
+    margin: 6px 0 22px;
+  }
+  .case-cap-circle {
+    width: calc(100% + 78px);
+    height: calc(100% + 52px);
+  }
 }
