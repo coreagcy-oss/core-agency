@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// base указывает на имя репозитория GitHub Pages — сайт открывается по адресу
-// https://<username>.github.io/core-agency/. При смене имени репозитория поменяйте здесь.
+// Сайт обслуживается с собственного домена core-agency.pro (корень),
+// поэтому base = '/'. Для project-страницы GitHub Pages здесь был '/core-agency/'.
 export default defineConfig({
-  base: '/core-agency/',
+  base: '/',
   plugins: [react()],
   server: { port: 5173, host: true },
 });
