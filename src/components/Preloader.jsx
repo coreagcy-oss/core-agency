@@ -7,9 +7,22 @@ export default function Preloader({ onComplete }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      onComplete?.();
+    };
+
+    // Анимация интро крутится через GSAP/requestAnimationFrame. Если страница
+    // открыта в фоновой/неактивной вкладке, rAF тормозится почти до нуля —
+    // таймлайн застывает, и сайт навсегда висит на прелоадере. Жёсткий таймаут
+    // гарантирует, что контент покажется в любом случае.
+    const fallback = setTimeout(finish, 4500);
+
     const obj = { v: 0 };
     const tl = gsap.timeline({
-      onComplete: () => onComplete?.(),
+      onComplete: finish,
     });
     tl.to(obj, {
       v: 100,
@@ -28,7 +41,10 @@ export default function Preloader({ onComplete }) {
       },
       '-=0.1'
     );
-    return () => tl.kill();
+    return () => {
+      clearTimeout(fallback);
+      tl.kill();
+    };
   }, [onComplete]);
 
   return (
