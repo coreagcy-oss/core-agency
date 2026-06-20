@@ -3,10 +3,15 @@ import { Suspense, lazy, useEffect, useState } from 'react';
 const HeroScene = lazy(() => import('./HeroScene'));
 import { MARQUEE_SERVICES } from '../data/content';
 import { scrollToId } from '../utils/scroll';
+import { useIsMobile } from '../hooks/useIsMobile';
 import './Hero.css';
 
 export default function Hero() {
   const go = (href) => scrollToId(href);
+
+  // На мобильных тяжёлую 3D-сцену не грузим вовсе — остаётся фирменный
+  // градиентный фон .hero-scene-glow. Это убирает главный тормоз LCP.
+  const isMobile = useIsMobile();
 
   // Тяжёлая 3D-сцена на Three.js (~215 КБ + ~10 с работы потока) монтируется
   // только ПОСЛЕ первой отрисовки и в момент простоя браузера, чтобы не
@@ -31,7 +36,7 @@ export default function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-scene">
-        <Suspense fallback={null}>{show3D && <HeroScene />}</Suspense>
+        <Suspense fallback={null}>{show3D && !isMobile && <HeroScene />}</Suspense>
         <div className="hero-scene-glow" />
       </div>
 

@@ -22,11 +22,16 @@ import SectionDivider from './components/SectionDivider';
 import Sun from './components/Sun';
 import MusicToggle from './components/MusicToggle';
 import { useMagnetic } from './hooks/useMagnetic';
+import { useIsMobile } from './hooks/useIsMobile';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
+  // На мобильных не монтируем тяжёлые декоративные слои (планеты, нить-орб):
+  // они не несут смысла, но грузят поток и скролл. Стиль сохраняем за счёт
+  // звёзд, солнца и градиентов.
+  const isMobile = useIsMobile();
 
   useMagnetic(loaded);
 
@@ -92,8 +97,8 @@ export default function App() {
       <div className="noise" />
       <Navbar />
       <main>
-        <Planets />
-        <ScrollThread />
+        {!isMobile && <Planets />}
+        {!isMobile && <ScrollThread />}
         <Hero />
         <Stats />
         <SectionDivider />
