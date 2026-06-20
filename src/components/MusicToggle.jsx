@@ -57,7 +57,10 @@ export default function MusicToggle() {
 
   return (
     <>
-      <audio ref={audioRef} src={asset('audio/site-music.mp3')} loop preload="auto" />
+      {/* preload="none": 4-мегабайтную фоновую музыку НЕ качаем при заходе —
+          файл подгружается только когда пользователь реально включает звук
+          (первый жест → play()). Это убирает самый тяжёлый ненужный запрос. */}
+      <audio ref={audioRef} src={asset('audio/site-music.mp3')} loop preload="none" />
       <button
         className={`music-toggle magnetic ${playing ? 'is-playing' : ''}`}
         onClick={toggle}
