@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
+import { asset } from '../utils/asset';
 import './Preloader.css';
 
 export default function Preloader({ onComplete }) {
@@ -52,6 +53,9 @@ export default function Preloader({ onComplete }) {
   return (
     <div className="preloader" ref={root}>
       <div className="pl-content">
+        <div className="pl-mark">
+          <img src={asset('logo.svg')} alt="Core Agency" width="64" height="64" />
+        </div>
         <div className="pl-logo">
           <span className="pl-core">CORE</span>
           <span className="pl-agency">AGENCY</span>
