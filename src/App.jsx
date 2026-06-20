@@ -35,6 +35,14 @@ export default function App() {
 
   useMagnetic(loaded);
 
+  // Снимаем статический бут-оверлей из index.html: React-прелоадер уже
+  // смонтирован и перекрывает его (z-index 10001 > 10000), так что удаление
+  // незаметно. Оверлей нужен лишь чтобы закрыть вспышку первого экрана до JS.
+  useEffect(() => {
+    const boot = document.getElementById('boot-overlay');
+    if (boot) boot.remove();
+  }, []);
+
   useEffect(() => {
     if (!loaded) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

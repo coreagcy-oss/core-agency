@@ -70,6 +70,93 @@
       <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
     </noscript>
 
+    <!-- Критический CSS бут-оверлея: экран загрузки рисуется С ПЕРВОГО КАДРА,
+         ещё до загрузки JS. Без него на долю секунды мелькает уже вшитый
+         пререндером первый экран, и только потом React показывает прелоадер.
+         Цвета/шрифты заданы литералами (CSS-переменные приходят вместе с JS). -->
+    <style>
+      #boot-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: #080604;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #boot-overlay .boot-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+      }
+      #boot-overlay .boot-mark {
+        width: 96px;
+        height: 96px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.04);
+        box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.6);
+      }
+      #boot-overlay .boot-mark img {
+        width: 58%;
+        height: 58%;
+        object-fit: contain;
+        display: block;
+      }
+      #boot-overlay .boot-logo {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        font-family: 'Unbounded', sans-serif;
+        font-weight: 800;
+        font-size: clamp(34px, 7vw, 78px);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      #boot-overlay .boot-core {
+        color: #f4ece4;
+      }
+      #boot-overlay .boot-agency {
+        background: linear-gradient(135deg, #ff6a1a, #ff9d2e);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      #boot-overlay .boot-tag {
+        font-family: 'Unbounded', sans-serif;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+        color: #9b8f81;
+      }
+      #boot-overlay .boot-bar-wrap {
+        width: min(280px, 60vw);
+        height: 2px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 2px;
+        overflow: hidden;
+        margin-top: 8px;
+      }
+      #boot-overlay .boot-bar {
+        height: 100%;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: left;
+        background: linear-gradient(135deg, #ff6a1a, #ff9d2e);
+      }
+      @media (max-width: 700px) {
+        #boot-overlay .boot-mark {
+          width: 78px;
+          height: 78px;
+          border-radius: 20px;
+        }
+      }
+    </style>
+
     <!-- Структурированные данные: карточка организации для расширенного сниппета -->
     <script type="application/ld+json">
       {
@@ -115,6 +202,18 @@
     </script>
   </head>
   <body>
+    <!-- Статический экран загрузки — виден мгновенно, до загрузки JS.
+         React-прелоадер (z-index 10001) встаёт поверх и удаляет этот оверлей. -->
+    <div id="boot-overlay" aria-hidden="true">
+      <div class="boot-content">
+        <div class="boot-mark"><img src="/logo.svg" alt="" width="64" height="64" /></div>
+        <div class="boot-logo">
+          <span class="boot-core">CORE</span><span class="boot-agency">AGENCY</span>
+        </div>
+        <div class="boot-tag">АГЕНТСТВО ПОЛНОГО ЦИКЛА</div>
+        <div class="boot-bar-wrap"><div class="boot-bar"></div></div>
+      </div>
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
