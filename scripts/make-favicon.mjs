@@ -37,9 +37,11 @@ function findChrome() {
 }
 
 const sizes = [
-  { file: 'favicon-256.png', size: 256 }, // для Google-поиска (высокое разрешение)
-  { file: 'favicon-96.png', size: 96 },
-  { file: 'apple-touch-icon.png', size: 180 }, // iOS «на экран домой»
+  // Иконки браузера/Google: круглая форма → углы прозрачные (transparent: true)
+  { file: 'favicon-256.png', size: 256, transparent: true }, // Google-поиск (высокое разрешение)
+  { file: 'favicon-96.png', size: 96, transparent: true },
+  // iOS сам скругляет иконку, поэтому отдаём непрозрачный чёрный квадрат
+  { file: 'apple-touch-icon.png', size: 180, transparent: false },
 ];
 
 const run = async () => {
@@ -56,18 +58,19 @@ const run = async () => {
   });
   try {
     const page = await browser.newPage();
-    for (const { file, size } of sizes) {
+    for (const { file, size, transparent } of sizes) {
       const inner = svg.replace('width="1024" height="1024"', `width="${size}" height="${size}"`);
+      const bg = transparent ? 'transparent' : '#000';
       const html = `<!doctype html><html><head><style>
-        html,body{margin:0;padding:0;background:#000}
-        #i{width:${size}px;height:${size}px;display:block;background:#000}
+        html,body{margin:0;padding:0;background:${bg}}
+        #i{width:${size}px;height:${size}px;display:block;background:${bg}}
         #i svg{display:block}
       </style></head><body><div id="i">${inner}</div></body></html>`;
       await page.setViewport({ width: size, height: size, deviceScaleFactor: 1 });
       await page.setContent(html, { waitUntil: 'load' });
       const buf = await page.screenshot({
         type: 'png',
-        omitBackground: false,
+        omitBackground: transparent, // углы прозрачные для круглой иконки
         clip: { x: 0, y: 0, width: size, height: size },
       });
       writeFileSync(path.join(root, 'public', file), buf);
