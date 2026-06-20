@@ -23,7 +23,7 @@ export default function Cases() {
               data-delay={(i * 0.06).toFixed(2)}
             >
               <div className="case-frame">
-                <img src={c.img} alt={c.name} loading="lazy" />
+                <img src={c.img} alt={c.name} loading="lazy" width={c.w} height={c.h} />
               </div>
               <figcaption className="case-cap">
                 <span className="case-cap-num-wrap">
