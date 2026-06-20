@@ -53,7 +53,18 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+    <!-- Шрифты грузим НЕблокирующе: первый экран (он уже в пререндере) рисуется
+         сразу системным шрифтом, фирменный Unbounded/Golos подменяется по готовности
+         (display=swap). Это убирает шрифты из критического пути и ускоряет FCP/LCP. -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+    </noscript>
 
     <!-- Структурированные данные: карточка организации для расширенного сниппета -->
     <script type="application/ld+json">
