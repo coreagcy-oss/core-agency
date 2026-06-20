@@ -19,9 +19,13 @@
     <meta name="theme-color" content="#0d0f14" />
     <link rel="canonical" href="https://core-agency.pro/" />
 
-    <!-- Иконки: оригинальный фирменный логотип на чёрной подложке (для вкладки) -->
+    <!-- Иконки: оригинальный фирменный логотип на чёрной подложке.
+         Даём и SVG (для браузеров), и PNG высокого разрешения — Google в выдаче
+         подхватывает PNG надёжнее, чем чистый SVG. -->
+    <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Open Graph (Telegram, VK, WhatsApp, Facebook) -->
     <meta property="og:type" content="website" />
