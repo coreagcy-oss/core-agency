@@ -164,15 +164,25 @@ export default function Starfield() {
       if (reduce) drawStatic();
     };
 
-    build();
-    if (reduce) {
-      drawStatic();
-    } else {
-      raf = requestAnimationFrame(draw);
-    }
-    window.addEventListener('resize', onResize);
+    // Инициализацию (отрисовку + непрерывный rAF) откладываем до простоя
+    // браузера после первого экрана, чтобы фон не конкурировал за поток
+    // во время загрузки и не ухудшал LCP/TTI.
+    let started = false;
+    let idleId = 0;
+    const start = () => {
+      if (started) return;
+      started = true;
+      build();
+      if (reduce) drawStatic();
+      else raf = requestAnimationFrame(draw);
+      window.addEventListener('resize', onResize);
+    };
+    const ric =
+      window.requestIdleCallback || ((cb) => window.setTimeout(() => cb(), 1));
+    idleId = ric(start, { timeout: 2500 });
 
     return () => {
+      if (idleId && window.cancelIdleCallback) window.cancelIdleCallback(idleId);
       cancelAnimationFrame(raf);
       window.removeEventListener('resize', onResize);
     };

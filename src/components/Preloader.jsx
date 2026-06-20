@@ -18,25 +18,27 @@ export default function Preloader({ onComplete }) {
     // открыта в фоновой/неактивной вкладке, rAF тормозится почти до нуля —
     // таймлайн застывает, и сайт навсегда висит на прелоадере. Жёсткий таймаут
     // гарантирует, что контент покажется в любом случае.
-    const fallback = setTimeout(finish, 4500);
+    const fallback = setTimeout(finish, 2600);
 
     const obj = { v: 0 };
     const tl = gsap.timeline({
       onComplete: finish,
     });
+    // Длительности сокращены, чтобы контент открывался быстрее (лучше LCP),
+    // сохраняя тот же визуальный сценарий интро.
     tl.to(obj, {
       v: 100,
-      duration: 2,
+      duration: 1.1,
       ease: 'power2.inOut',
       onUpdate: () => setCount(Math.round(obj.v)),
     });
-    tl.to('.pl-bar', { scaleX: 1, duration: 2, ease: 'power2.inOut' }, 0);
-    tl.to('.pl-content', { y: -40, opacity: 0, duration: 0.6, ease: 'power3.in' }, '+=0.15');
+    tl.to('.pl-bar', { scaleX: 1, duration: 1.1, ease: 'power2.inOut' }, 0);
+    tl.to('.pl-content', { y: -40, opacity: 0, duration: 0.5, ease: 'power3.in' }, '+=0.1');
     tl.to(
       root.current,
       {
         yPercent: -100,
-        duration: 0.9,
+        duration: 0.7,
         ease: 'power4.inOut',
       },
       '-=0.1'
