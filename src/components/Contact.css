@@ -93,6 +93,19 @@
   border-color: var(--accent);
   box-shadow: 0 0 0 3px rgba(255, 106, 26, 0.14);
 }
+/* подсветка незаполненного/некорректного поля */
+.field input.has-error,
+.field textarea.has-error {
+  border-color: #ff5a4d;
+  box-shadow: 0 0 0 3px rgba(255, 90, 77, 0.14);
+}
+.field-error {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ff7a59;
+  line-height: 1.35;
+  margin-top: -2px;
+}
 
 /* блок предпочтений: два вопроса-карточки в один ряд, равной высоты,
    с отбивкой сверху — чтобы визуально отделить от контактных полей */
