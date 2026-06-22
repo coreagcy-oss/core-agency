@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Process() {
   const pin = useRef(null);
   const track = useRef(null);
+  const trackWrap = useRef(null);
   const planets = useRef(null);
 
   useEffect(() => {
@@ -104,6 +105,46 @@ export default function Process() {
       };
     });
 
+    // Мобильный: вступительный блок остаётся обычным заголовком сверху,
+    // а шаги 01–06 листаются горизонтально (как на ПК), а не вниз.
+    // Закрепляем обёртку трека на высоту экрана и сдвигаем трек по X.
+    mm.add('(max-width: 920px)', () => {
+      const el = track.current;
+      const wrap = trackWrap.current;
+      const getScroll = () => Math.max(0, el.scrollWidth - wrap.clientWidth);
+
+      const tween = gsap.to(el, {
+        x: () => -getScroll(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wrap,
+          start: 'top top',
+          end: () => '+=' + getScroll(),
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // подсветка активной панели, когда она в центре экрана
+      const panelEls = gsap.utils.toArray('.proc-panel');
+      panelEls.forEach((panel) => {
+        ScrollTrigger.create({
+          trigger: panel,
+          containerAnimation: tween,
+          start: 'left 85%',
+          end: 'right 45%',
+          onToggle: (self) => panel.classList.toggle('active', self.isActive),
+        });
+      });
+
+      return () => {
+        tween.scrollTrigger && tween.scrollTrigger.kill();
+        tween.kill();
+      };
+    });
+
     return () => mm.revert();
   }, []);
 
@@ -133,25 +174,27 @@ export default function Process() {
           <span className="proc-planet proc-planet--gas" />
         </div>
 
-        <div className="proc-track" ref={track}>
-          {PROCESS.map((p) => {
-            const [firstWord, ...restWords] = p.title.split(' ');
-            return (
-              <article className="proc-panel" key={p.step}>
-                <span className="proc-panel-step">{p.step}</span>
-                <div className="proc-panel-body">
-                  <h3 className="proc-panel-title">
-                    <span className="proc-panel-title-main">{firstWord}</span>
-                    {restWords.length > 0 && (
-                      <span className="proc-panel-title-sub">{restWords.join(' ')}</span>
-                    )}
-                  </h3>
-                  <p className="proc-panel-desc">{p.desc}</p>
-                </div>
-                <span className="proc-panel-glow" aria-hidden="true" />
-              </article>
-            );
-          })}
+        <div className="proc-track-wrap" ref={trackWrap}>
+          <div className="proc-track" ref={track}>
+            {PROCESS.map((p) => {
+              const [firstWord, ...restWords] = p.title.split(' ');
+              return (
+                <article className="proc-panel" key={p.step}>
+                  <span className="proc-panel-step">{p.step}</span>
+                  <div className="proc-panel-body">
+                    <h3 className="proc-panel-title">
+                      <span className="proc-panel-title-main">{firstWord}</span>
+                      {restWords.length > 0 && (
+                        <span className="proc-panel-title-sub">{restWords.join(' ')}</span>
+                      )}
+                    </h3>
+                    <p className="proc-panel-desc">{p.desc}</p>
+                  </div>
+                  <span className="proc-panel-glow" aria-hidden="true" />
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
