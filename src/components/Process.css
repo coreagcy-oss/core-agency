@@ -108,12 +108,6 @@
   box-shadow: inset -10px -8px 24px rgba(60, 30, 10, 0.6), 0 0 30px rgba(240, 165, 80, 0.2);
 }
 
-/* обёртка трека: на ПК прозрачна для раскладки (трек остаётся flex-элементом
-   .proc-pin), на мобилке становится закреплённой областью гориз. скролла */
-.proc-track-wrap {
-  display: contents;
-}
-
 .proc-track {
   display: flex;
   align-items: center;
@@ -283,59 +277,44 @@
   opacity: 1;
 }
 
-/* --- Мобильная раскладка: вступительный блок сверху + горизонтальный
-   pinned-скролл шагов вправо (как на ПК) --- */
+/* --- Мобильная раскладка: вертикальный стек без пина --- */
 @media (max-width: 920px) {
   .process {
-    padding: 84px 0 0;
+    padding: 84px 0;
   }
   .proc-pin {
     display: block;
     height: auto;
     overflow: visible;
   }
-  /* левый затемняющий градиент нужен только для ПК-трека под вводным блоком */
+  /* левый затемняющий градиент нужен только для горизонтального трека */
   .proc-pin::before {
     display: none;
   }
   .proc-planets {
     display: none;
   }
-  /* вступительный блок остаётся обычным заголовком сверху */
+  .proc-track {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    padding: 0 22px;
+    transform: none !important;
+  }
   .proc-intro {
     position: static;
     transform: none;
     width: 100%;
-    margin: 0 0 4px;
-    padding: 0 22px;
+    margin-bottom: 8px;
   }
   .proc-quote {
     max-width: none;
   }
-  /* подсказка о горизонтальной прокрутке снова актуальна */
   .proc-scroll-hint {
-    display: inline-flex;
-  }
-
-  /* обёртка трека — закреплённая область высотой в экран */
-  .proc-track-wrap {
-    display: flex;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-  }
-  /* трек снова горизонтальный, сдвигается по X через GSAP */
-  .proc-track {
-    flex-direction: row;
-    align-items: center;
-    gap: 18px;
-    padding-left: 22px;
-    padding-right: 40vw;
-    will-change: transform;
+    display: none;
   }
   .proc-panel {
-    flex: 0 0 auto;
-    width: min(82vw, 380px);
+    width: 100%;
     height: auto;
     min-height: 0;
     gap: 22px;
@@ -343,14 +322,8 @@
     border-color: var(--border-strong);
   }
   .proc-panel-step {
-    font-size: 56px;
-  }
-  /* активная панель в центре снова подсвечивается ярче */
-  .proc-panel-step {
-    opacity: 0.5;
-  }
-  .proc-panel.active .proc-panel-step {
     opacity: 1;
+    font-size: 56px;
   }
   /* меньше шрифт заголовка, чтобы длинные слова («Стратегическая»)
      помещались в одну строку и «я» не переносилось */
@@ -366,6 +339,6 @@
     font-size: 19px;
   }
   .proc-panel-glow {
-    display: block;
+    display: none;
   }
 }
